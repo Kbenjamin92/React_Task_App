@@ -6,7 +6,7 @@ const Nav = () => {
     return (
         <nav>
             <div className="title">
-                <h1>List Handler</h1>
+                <h1>Task App</h1>
             </div>
 
             <div className="link-container">
