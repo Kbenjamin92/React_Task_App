@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 const Form = (props) => {
     
@@ -21,13 +22,14 @@ const Form = (props) => {
                     onChange={e => props.setDescription(e.target.value)}
                     />
                     <button type="submit">{props.buttonValue}</button>
-
                     {props.isClicked ? 
                     <>
-                    <button className="close-btn" onClick={() => props.setIsClicked(false)}>Close</button>
+                    <Button variant="danger" className="close-btn" onClick={() => props.setIsClicked(false)}>Close</Button> 
                     </>
                     : null}
+                   
             </form>
+                    
 
         </div>
     )

@@ -9,11 +9,6 @@ const Main = () => {
     const [isClicked, setIsClicked] = useState(false)
     const [buttonValue] = useState('Add Task')
     const [updateButtonValue] = useState('Update Task')
-    const [labelTitle] = useState('')
-    const [labelDescription] = useState('')
-
-
-
 
     
     // submit form
@@ -39,8 +34,8 @@ const Main = () => {
     
     */
     // update form
-   const handleUpdate = (updateInput) => {
-    //    e.preventDefault()
+   const handleUpdate = (e, updateInput) => {
+       e.preventDefault()
     //    update code...
         const updateData = {
             title: title,
@@ -107,6 +102,8 @@ const Main = () => {
                 buttonValue={updateButtonValue}
                 labelTitle='Update Title'
                 labelDescription='Update Description'
+                isClicked={isClicked}
+                setIsClicked={setIsClicked}
                 />
             </>
             : null}
