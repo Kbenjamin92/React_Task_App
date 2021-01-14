@@ -5,21 +5,28 @@ const Form = (props) => {
     return (
         <div>
             <form onSubmit={props.handleSubmit}>
-                Title: <input 
+                {props.labelTitle}: <input 
+                    className="title-field"
                     type="text" 
                     name="title"
                     value={props.title}
                     onChange={e => props.setTitle(e.target.value)}
                     />
 
-                Description: <textarea 
+                {props.labelDescription}: <textarea 
+                    className="desc-field"
                     type="text" 
                     name="description"
                     value={props.description}
                     onChange={e => props.setDescription(e.target.value)}
                     />
+                    <button type="submit">{props.buttonValue}</button>
 
-                    <button type="submit">Add to list</button>
+                    {props.isClicked ? 
+                    <>
+                    <button className="close-btn" onClick={() => props.setIsClicked(false)}>Close</button>
+                    </>
+                    : null}
             </form>
 
         </div>

@@ -6,7 +6,15 @@ const Main = () => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [dataOutput, setDataOutput] = useState([])
-    const [updateOutput, setUpdateOutput] = useState({})
+    const [isClicked, setIsClicked] = useState(false)
+    const [buttonValue] = useState('Add Task')
+    const [updateButtonValue] = useState('Update Task')
+    const [labelTitle] = useState('')
+    const [labelDescription] = useState('')
+
+
+
+
     
     // submit form
     const handleSubmit = (e) => {
@@ -30,9 +38,21 @@ const Main = () => {
     
     
     */
-   const handleUpdate = (e) => {
-       e.preventDefault()
+    // update form
+   const handleUpdate = (updateInput) => {
+    //    e.preventDefault()
     //    update code...
+        const updateData = {
+            title: title,
+            description: description,
+        }
+        if (dataOutput.includes(updateInput)) {
+            const updateList = dataOutput.filter(obj => (obj === updateInput))
+            setDataOutput([...dataOutput, updateList, updateData])
+        }
+
+        setTitle('')
+        setDescription('')
 
    }
 
@@ -46,13 +66,15 @@ const Main = () => {
 
     // loop through the array to render on the screen
     const mapData = dataOutput.map((obj, i) => {
-        console.log(obj)
+        console.log(isClicked)
         return (
             <div key={i} className="map-container">
                 <div className="content-container">
-                    <h3>{obj.id} {obj.title}</h3>
+                    <h3>{obj.title}</h3>
                     <h3>{obj.description}</h3>
                     <button className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</button>
+                    <button className="updateBtn" onClick={() => setIsClicked(true)}>Edit</button>
+
                 </div>
     
             </div>
@@ -68,8 +90,26 @@ const Main = () => {
                 handleSubmit={handleSubmit}
                 setTitle={setTitle}
                 setDescription={setDescription}
+                buttonValue={buttonValue}
+                labelTitle='Title'
+                labelDescription='Description'
+                
                 />
             {mapData}
+            {isClicked ?
+            <>
+            <Form 
+                title={title}
+                description={description}
+                handleSubmit={handleUpdate}
+                setTitle={setTitle}
+                setDescription={setDescription}
+                buttonValue={updateButtonValue}
+                labelTitle='Update Title'
+                labelDescription='Update Description'
+                />
+            </>
+            : null}
         </main>
     );
 }
