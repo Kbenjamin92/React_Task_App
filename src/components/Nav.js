@@ -1,17 +1,18 @@
 import React from 'react';
+import '../styles/Nav.css';
 // import { Link } from 'react-router-dom';
 
 
 const Nav = () => {
     return (
-        <nav>
+        <nav className="parent-nav-container">
             <div className="title">
-                <h1>Task App</h1>
+                <h1 className="app-title">Task App</h1>
             </div>
 
             <div className="link-container">
                 <div>
-                    {/* <Link to="/about"><p>About</p></Link> */}
+                    <a href="/about" className="link">About</a>
                 </div>
             </div>
         </nav>

@@ -1,0 +1,18 @@
+@media only screen and (max-width: 740px) {
+    .parent-header-container {
+        /* display: flex; */
+        /* justify-content: center; */
+        padding: 10px 0px 0px 0px;
+        background-color:#d6dbdf;
+        
+    }
+    .header-img {
+        height: 220px;
+        width: 100%;
+    }
+    .header-txt {
+        font-size: 16px;
+        padding: 30px 25px 0px 0px;
+    }
+    
+}

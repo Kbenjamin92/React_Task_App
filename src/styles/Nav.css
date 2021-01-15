@@ -1,0 +1,19 @@
+@media only screen and (max-width: 740px) {
+    .parent-nav-container {
+        display: flex;
+        justify-content: space-between;
+        background-color: #3498db;
+        color: #ffffff;
+        
+    }
+    .app-title {
+        font-size: 28px;
+        padding-left: 10px;
+    }
+    .link {
+        text-decoration: none;
+        color: #ffffff;
+        padding-right: 10px;
+
+    }
+}

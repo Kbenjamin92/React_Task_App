@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Form from './Form'
+import '../styles/Main.css'
 
 const Main = () => {
 

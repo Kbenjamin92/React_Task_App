@@ -1,5 +1,7 @@
 import React from 'react';
+import '../styles/Form.css'
 import Button from 'react-bootstrap/Button';
+
 
 const Form = (props) => {
     
