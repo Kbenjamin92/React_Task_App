@@ -10,8 +10,6 @@ const Main = () => {
     const [buttonValue] = useState('Add Task')
     const [updateButtonValue] = useState('Update Task')
     const [id, setId] = useState(0)
-    const [objIsClicked, setObjIsClicked] = useState(false)
-
 
     
     // submit form
@@ -62,12 +60,6 @@ const Main = () => {
         
     }
 
-    // const editFunctionality = (index) => {
-    //     setIsClicked(true)
-    //     console.log()
-    //     console.log(id)
-    // }
-
     // loop through the array to render on the screen
     const mapData = dataOutput.map((obj, i) => {
         // console.log(i)
@@ -83,7 +75,6 @@ const Main = () => {
                     <h3>{obj.description}</h3>
                     <button className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</button>
                     <button className="updateBtn" onClick={() => setIsClicked(true)}>Edit</button>
-                    {/* <button className="updateBtn" onClick={() => handleUpdate(i)}>Test</button> */}
 
                 </div>
                 {isClicked && obj.id === dataOutput[i].id ?
