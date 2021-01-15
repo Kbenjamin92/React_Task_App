@@ -9,6 +9,9 @@ const Main = () => {
     const [isClicked, setIsClicked] = useState(false)
     const [buttonValue] = useState('Add Task')
     const [updateButtonValue] = useState('Update Task')
+    const [id, setId] = useState(0)
+    const [objIsClicked, setObjIsClicked] = useState(false)
+
 
     
     // submit form
@@ -16,6 +19,7 @@ const Main = () => {
         e.preventDefault()
         // create object to store user input
         const dataObj = {
+            id: id,
             title: title,
             description: description,
         }
@@ -24,12 +28,13 @@ const Main = () => {
         // clear the form input
         setTitle('')
         setDescription('')
+        setId(id + 1)
     }
 
    
     // update form
-   const handleUpdate = (updateInput) => {
-    //    e.preventDefault()
+   const handleUpdate = (updateInput, e) => {
+       e.preventDefault()
     //    update code...
         const updateData = {
             title: title,
@@ -57,15 +62,19 @@ const Main = () => {
         
     }
 
-    const testIndex = (i) => {
-        console.log(i)
-    }
+    // const editFunctionality = (index) => {
+    //     setIsClicked(true)
+    //     console.log()
+    //     console.log(id)
+    // }
 
     // loop through the array to render on the screen
     const mapData = dataOutput.map((obj, i) => {
-        console.log(i)
-        console.log(obj)
-
+        // console.log(i)
+        // console.log(dataOutput.indexOf(obj))
+        // console.log(obj)
+        console.log(obj.id)
+        console.log(dataOutput)
 
         return (
             <div key={i} className="map-container">
@@ -76,7 +85,8 @@ const Main = () => {
                     <button className="updateBtn" onClick={() => setIsClicked(true)}>Edit</button>
                     {/* <button className="updateBtn" onClick={() => handleUpdate(i)}>Test</button> */}
 
-                {isClicked && obj === i ?
+                </div>
+                {isClicked && obj.id === dataOutput[i].id ?
                 <>
                 <Form 
                     title={title}
@@ -92,8 +102,6 @@ const Main = () => {
                     />
                 </>
                 : null}
-
-                </div>
     
             </div>
             )
