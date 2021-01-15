@@ -92,22 +92,17 @@ const Main = () => {
         
     }
 
-   
-
     // loop through the array to render on the screen
     const mapData = dataOutput.map((obj, i) => {
-        console.log(dataOutput)
-        console.log(obj.isActive)
 
+        // render unique form for update
         const targetItem = (itemId) => {
             setIsClicked(true)
             if (obj.id === itemId) {
                 obj.isActive = true
             }
-            
         }
 
-       
         return (
             <div key={i} className="map-container">
                 {/* render the task data */}
@@ -134,7 +129,7 @@ const Main = () => {
                 />
                   
                 </>
-                : console.log('broke')}
+                : null}
     
             </div>
             )
