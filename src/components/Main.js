@@ -9,8 +9,8 @@ const Main = () => {
     }
     const [input, setInput] = useState(inputObj)
     const updateInputObj = {
-        updateTitle: '',
-        updateDescription: '',
+        title: '',
+        description: '',
     }
     const [updateInput, setUpdateInput] = useState(updateInputObj)
     const [dataOutput, setDataOutput] = useState([])
@@ -18,11 +18,8 @@ const Main = () => {
     const [buttonValue] = useState('Add Task')
     const [updateButtonValue] = useState('Update Task')
     const [id, setId] = useState(0)
-    const [addTaskIsClicked, setAddTaskIsClicked] = useState(false)
-    const [updateTaskIsClicked, setUpdateTaskIsClicked] = useState(false)
-    const [formInputNameTitle, setFormInputNameTitle] = useState('')
-    const [formInputNameDesc, setFormInputNameDesc] = useState('')
     
+
     // submit form
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -31,6 +28,7 @@ const Main = () => {
             id: id,
             title: input.title,
             description: input.description,
+            isActive: false
         }
         // append the new object to the array in state
         setDataOutput([dataObj, ...dataOutput])
@@ -40,48 +38,51 @@ const Main = () => {
             description: ''
         })
         setId(id + 1)
-        setAddTaskIsClicked(true)
     }
 
     // handles all inputs
     const handleChange = (e) => {
-        const { name, value } = e.target
-        if (isClicked) {
+        if (isClicked === true) {
+            const { name, value } = e.target
             // handle the update task data
             setUpdateInput(prev => ({
                 ...prev,
                 [name]: value
             }))
         } else if (isClicked === false) {
+            const { name, value } = e.target
             // handle the add task data
             setInput(prev => ({
                 ...prev,
                 [name]: value
             }))
         }
+
     }   
 
    
     // update form
    const handleUpdate = (updateThisInput) => {
-    //    update code...
+    //    updates the th current value
+    
         const updateData = {
             id: id,
-            updateTitle: updateInput.updateTitle,
-            updateDescription: updateInput.updateDescription
+            title: updateInput.title,
+            description: updateInput.description,
+            isActive: false
         }
         let index = dataOutput.findIndex(item => (item !== updateThisInput) || (item === updateThisInput))
 
         if (updateThisInput !== index || updateThisInput === index){
-            console.log(updateThisInput)
-            console.log(index)
             dataOutput[updateThisInput] = updateData
-            setDataOutput([updateData])
-        }
-        
+            setDataOutput([...dataOutput])
+        }        
         setIsClicked(false)
-        setUpdateTaskIsClicked(true)
-        setAddTaskIsClicked(false)
+        setUpdateInput({
+            title: '',
+            description: ''
+        })
+
    }
 
     // removes list items
@@ -90,85 +91,54 @@ const Main = () => {
         setDataOutput(list)
         
     }
-// change the name value for title in the form
-    const changeEqualityOfNameTitle = () => {
-        if (addTaskIsClicked) {
-            setFormInputNameTitle('title')
-            return formInputNameTitle
-        } else if (updateTaskIsClicked) {
-            setFormInputNameTitle('updateTitle')
-            return formInputNameTitle
-        }
-    }
-    // change the name value for description in the form
-    const changeEqualityOfNameDesc = () => {
-        if (addTaskIsClicked) {
-            setFormInputNameDesc('description')
-           return formInputNameDesc
-        } else if (updateTaskIsClicked) {
-            setFormInputNameDesc('updateDescription')
-            return formInputNameDesc
-        }
-    }
+
+   
 
     // loop through the array to render on the screen
     const mapData = dataOutput.map((obj, i) => {
         console.log(dataOutput)
-        console.log(obj.updateTitle)
-        console.log(obj.title)
+        console.log(obj.isActive)
 
+        const targetItem = (itemId) => {
+            setIsClicked(true)
+            if (obj.id === itemId) {
+                obj.isActive = true
+            }
+            
+        }
 
+       
         return (
             <div key={i} className="map-container">
                 {/* render the task data */}
-                 {addTaskIsClicked ? 
-                <>
                 <div className="content-container">
                     <h3>{obj.title}</h3>
                     <h3>{obj.description}</h3>
                     <button className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</button>
-                    <button className="updateBtn" onClick={() => setIsClicked(true)}>Edit</button>
+                    <button className="updateBtn" onClick={() => targetItem(obj.id)}>Edit</button>
 
                 </div>
-                </>
-            : null }
-
-            {/* render the Update task data */}
-            {updateTaskIsClicked ? 
-                <>
-                <div className="content-container">
-                    <h3>{obj.updateTitle}</h3>
-                    <h3>{obj.updateDescription}</h3>
-                    <button className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</button>
-                    <button className="updateBtn" onClick={() => setIsClicked(true)}>Edit</button>
-
-                </div>
-                </>
-            : null }
-
-
-                {isClicked && obj.id === dataOutput[i].id ?
+              
+                {isClicked === true && obj.isActive === true ?
                 <>
                 <Form 
-                    updateTitle={updateInput.updateTitle}
-                    updateDescription={updateInput.updateDescription}
+                    title={updateInput.title}
+                    description={updateInput.description}
                     handleSubmit={() => handleUpdate(i)}
-                    handleChangeUpdate={handleChange}
+                    handleChange={handleChange}
                     buttonValue={updateButtonValue}
                     labelTitle='Update Title'
                     labelDescription='Update Description'
                     isClicked={isClicked}
                     setIsClicked={setIsClicked}
-                    changeEqualityOfNameTitle={changeEqualityOfNameTitle}
-                    changeEqualityOfNameDesc={changeEqualityOfNameDesc}
-                                     />
+                />
+                  
                 </>
-                : null}
+                : console.log('broke')}
     
             </div>
             )
         })
-
 
     return (
         <main>
@@ -180,11 +150,7 @@ const Main = () => {
                 buttonValue={buttonValue}
                 labelTitle='Title'
                 labelDescription='Description'
-                changeEqualityOfNameTitle={changeEqualityOfNameTitle}
-                changeEqualityOfNameDesc={changeEqualityOfNameDesc}
                
-
-                
                 />
             {mapData}
             

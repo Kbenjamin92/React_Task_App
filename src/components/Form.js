@@ -9,7 +9,7 @@ const Form = (props) => {
                 {props.labelTitle}: <input 
                     className="title-field"
                     type="text" 
-                    name={props.changeEqualityOfNameTitle}
+                    name="title"
                     value={props.title}
                     onChange={props.handleChange}
                     />
@@ -17,7 +17,7 @@ const Form = (props) => {
                 {props.labelDescription}: <textarea 
                     className="desc-field"
                     type="text" 
-                    name={props.changeEqualityOfNameDesc}
+                    name="description"
                     value={props.description}
                     onChange={props.handleChange}
                     />
