@@ -3,14 +3,25 @@ import Form from './Form'
 
 const Main = () => {
 
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
+    const inputObj = {
+        title: '',
+        description: '',
+    }
+    const [input, setInput] = useState(inputObj)
+    const updateInputObj = {
+        updateTitle: '',
+        updateDescription: '',
+    }
+    const [updateInput, setUpdateInput] = useState(updateInputObj)
     const [dataOutput, setDataOutput] = useState([])
     const [isClicked, setIsClicked] = useState(false)
     const [buttonValue] = useState('Add Task')
     const [updateButtonValue] = useState('Update Task')
     const [id, setId] = useState(0)
-
+    const [addTaskIsClicked, setAddTaskIsClicked] = useState(false)
+    const [updateTaskIsClicked, setUpdateTaskIsClicked] = useState(false)
+    const [formInputNameTitle, setFormInputNameTitle] = useState('')
+    const [formInputNameDesc, setFormInputNameDesc] = useState('')
     
     // submit form
     const handleSubmit = (e) => {
@@ -18,58 +29,100 @@ const Main = () => {
         // create object to store user input
         const dataObj = {
             id: id,
-            title: title,
-            description: description,
+            title: input.title,
+            description: input.description,
         }
         // append the new object to the array in state
         setDataOutput([dataObj, ...dataOutput])
         // clear the form input
-        setTitle('')
-        setDescription('')
+        setInput({
+            title: '',
+            description: ''
+        })
         setId(id + 1)
+        setAddTaskIsClicked(true)
     }
+
+    // handles all inputs
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        if (isClicked) {
+            // handle the update task data
+            setUpdateInput(prev => ({
+                ...prev,
+                [name]: value
+            }))
+        } else if (isClicked === false) {
+            // handle the add task data
+            setInput(prev => ({
+                ...prev,
+                [name]: value
+            }))
+        }
+    }   
 
    
     // update form
-   const handleUpdate = (updateInput, e) => {
-       e.preventDefault()
+   const handleUpdate = (updateThisInput) => {
     //    update code...
         const updateData = {
-            title: title,
-            description: description,
+            id: id,
+            updateTitle: updateInput.updateTitle,
+            updateDescription: updateInput.updateDescription
         }
-        let index = dataOutput.findIndex(item => (item !== updateInput) || (item === updateInput))
+        let index = dataOutput.findIndex(item => (item !== updateThisInput) || (item === updateThisInput))
 
-        if (updateInput !== index || updateInput === index){
-            console.log(updateInput)
+        if (updateThisInput !== index || updateThisInput === index){
+            console.log(updateThisInput)
             console.log(index)
-            dataOutput[updateInput] = updateData
+            dataOutput[updateThisInput] = updateData
+            setDataOutput([updateData])
         }
         
-        setTitle('')
-        setDescription('')
         setIsClicked(false)
-
+        setUpdateTaskIsClicked(true)
+        setAddTaskIsClicked(false)
    }
 
     // removes list items
     const handleRemoveItem = (arrayItem) => {
         const list = dataOutput.filter(currentItem => ( currentItem !== arrayItem ) )
-        console.log(list)
         setDataOutput(list)
         
+    }
+// change the name value for title in the form
+    const changeEqualityOfNameTitle = () => {
+        if (addTaskIsClicked) {
+            setFormInputNameTitle('title')
+            return formInputNameTitle
+        } else if (updateTaskIsClicked) {
+            setFormInputNameTitle('updateTitle')
+            return formInputNameTitle
+        }
+    }
+    // change the name value for description in the form
+    const changeEqualityOfNameDesc = () => {
+        if (addTaskIsClicked) {
+            setFormInputNameDesc('description')
+           return formInputNameDesc
+        } else if (updateTaskIsClicked) {
+            setFormInputNameDesc('updateDescription')
+            return formInputNameDesc
+        }
     }
 
     // loop through the array to render on the screen
     const mapData = dataOutput.map((obj, i) => {
-        // console.log(i)
-        // console.log(dataOutput.indexOf(obj))
-        // console.log(obj)
-        console.log(obj.id)
         console.log(dataOutput)
+        console.log(obj.updateTitle)
+        console.log(obj.title)
+
 
         return (
             <div key={i} className="map-container">
+                {/* render the task data */}
+                 {addTaskIsClicked ? 
+                <>
                 <div className="content-container">
                     <h3>{obj.title}</h3>
                     <h3>{obj.description}</h3>
@@ -77,20 +130,38 @@ const Main = () => {
                     <button className="updateBtn" onClick={() => setIsClicked(true)}>Edit</button>
 
                 </div>
+                </>
+            : null }
+
+            {/* render the Update task data */}
+            {updateTaskIsClicked ? 
+                <>
+                <div className="content-container">
+                    <h3>{obj.updateTitle}</h3>
+                    <h3>{obj.updateDescription}</h3>
+                    <button className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</button>
+                    <button className="updateBtn" onClick={() => setIsClicked(true)}>Edit</button>
+
+                </div>
+                </>
+            : null }
+
+
                 {isClicked && obj.id === dataOutput[i].id ?
                 <>
                 <Form 
-                    title={title}
-                    description={description}
+                    updateTitle={updateInput.updateTitle}
+                    updateDescription={updateInput.updateDescription}
                     handleSubmit={() => handleUpdate(i)}
-                    setTitle={setTitle}
-                    setDescription={setDescription}
+                    handleChangeUpdate={handleChange}
                     buttonValue={updateButtonValue}
                     labelTitle='Update Title'
                     labelDescription='Update Description'
                     isClicked={isClicked}
                     setIsClicked={setIsClicked}
-                    />
+                    changeEqualityOfNameTitle={changeEqualityOfNameTitle}
+                    changeEqualityOfNameDesc={changeEqualityOfNameDesc}
+                                     />
                 </>
                 : null}
     
@@ -102,14 +173,17 @@ const Main = () => {
     return (
         <main>
             <Form 
-                title={title}
-                description={description}
+                title={input.title}
+                description={input.description}
                 handleSubmit={handleSubmit}
-                setTitle={setTitle}
-                setDescription={setDescription}
+                handleChange={handleChange}
                 buttonValue={buttonValue}
                 labelTitle='Title'
                 labelDescription='Description'
+                changeEqualityOfNameTitle={changeEqualityOfNameTitle}
+                changeEqualityOfNameDesc={changeEqualityOfNameDesc}
+               
+
                 
                 />
             {mapData}

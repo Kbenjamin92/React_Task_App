@@ -9,17 +9,17 @@ const Form = (props) => {
                 {props.labelTitle}: <input 
                     className="title-field"
                     type="text" 
-                    name="title"
+                    name={props.changeEqualityOfNameTitle}
                     value={props.title}
-                    onChange={e => props.setTitle(e.target.value)}
+                    onChange={props.handleChange}
                     />
 
                 {props.labelDescription}: <textarea 
                     className="desc-field"
                     type="text" 
-                    name="description"
+                    name={props.changeEqualityOfNameDesc}
                     value={props.description}
-                    onChange={e => props.setDescription(e.target.value)}
+                    onChange={props.handleChange}
                     />
                     <button type="submit">{props.buttonValue}</button>
                     {props.isClicked ? 
