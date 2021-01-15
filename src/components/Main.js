@@ -20,34 +20,32 @@ const Main = () => {
             description: description,
         }
         // append the new object to the array in state
-        setDataOutput([...dataOutput, dataObj])
+        setDataOutput([dataObj, ...dataOutput])
         // clear the form input
         setTitle('')
         setDescription('')
     }
 
-    /*
-    update data
-    reuse the form
-    create a function that holds the state object of inputs
-    
-    
-    */
+   
     // update form
-   const handleUpdate = (e, updateInput) => {
-       e.preventDefault()
+   const handleUpdate = (updateInput) => {
+    //    e.preventDefault()
     //    update code...
         const updateData = {
             title: title,
             description: description,
         }
-        if (dataOutput.includes(updateInput)) {
-            const updateList = dataOutput.filter(obj => (obj === updateInput))
-            setDataOutput([...dataOutput, updateList, updateData])
-        }
+        let index = dataOutput.findIndex(item => (item !== updateInput) || (item === updateInput))
 
+        if (updateInput !== index || updateInput === index){
+            console.log(updateInput)
+            console.log(index)
+            dataOutput[updateInput] = updateData
+        }
+        
         setTitle('')
         setDescription('')
+        setIsClicked(false)
 
    }
 
@@ -59,9 +57,16 @@ const Main = () => {
         
     }
 
+    const testIndex = (i) => {
+        console.log(i)
+    }
+
     // loop through the array to render on the screen
     const mapData = dataOutput.map((obj, i) => {
-        console.log(isClicked)
+        console.log(i)
+        console.log(obj)
+
+
         return (
             <div key={i} className="map-container">
                 <div className="content-container">
@@ -69,6 +74,24 @@ const Main = () => {
                     <h3>{obj.description}</h3>
                     <button className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</button>
                     <button className="updateBtn" onClick={() => setIsClicked(true)}>Edit</button>
+                    {/* <button className="updateBtn" onClick={() => handleUpdate(i)}>Test</button> */}
+
+                {isClicked && obj === i ?
+                <>
+                <Form 
+                    title={title}
+                    description={description}
+                    handleSubmit={() => handleUpdate(i)}
+                    setTitle={setTitle}
+                    setDescription={setDescription}
+                    buttonValue={updateButtonValue}
+                    labelTitle='Update Title'
+                    labelDescription='Update Description'
+                    isClicked={isClicked}
+                    setIsClicked={setIsClicked}
+                    />
+                </>
+                : null}
 
                 </div>
     
@@ -91,22 +114,7 @@ const Main = () => {
                 
                 />
             {mapData}
-            {isClicked ?
-            <>
-            <Form 
-                title={title}
-                description={description}
-                handleSubmit={handleUpdate}
-                setTitle={setTitle}
-                setDescription={setDescription}
-                buttonValue={updateButtonValue}
-                labelTitle='Update Title'
-                labelDescription='Update Description'
-                isClicked={isClicked}
-                setIsClicked={setIsClicked}
-                />
-            </>
-            : null}
+            
         </main>
     );
 }
