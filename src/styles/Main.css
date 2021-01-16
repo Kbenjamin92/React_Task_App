@@ -1,0 +1,13 @@
+@media only screen and (max-width: 740px) {
+    .form-header-container {
+        margin: 25px 50px 15px 18px;
+        text-align: start;
+    }
+
+    .form-header {
+        font-size: 24px;
+        color: #000000;
+    }
+
+
+}

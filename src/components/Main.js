@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import Form from './Form'
+import FormComp from './FormComp'
 import '../styles/Main.css'
+import Button from 'react-bootstrap/Button';
+
 
 const Main = () => {
 
@@ -110,21 +112,21 @@ const Main = () => {
                 <div className="content-container">
                     <h3>{obj.title}</h3>
                     <h3>{obj.description}</h3>
-                    <button className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</button>
-                    <button className="updateBtn" onClick={() => targetItem(obj.id)}>Edit</button>
+                    <Button variant="danger" className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</Button>
+                    <Button variant="warning" className="updateBtn" onClick={() => targetItem(obj.id)}>Edit</Button>
 
                 </div>
               
                 {isClicked === true && obj.isActive === true ?
                 <>
-                <Form 
+                <FormComp 
                     title={updateInput.title}
                     description={updateInput.description}
                     handleSubmit={() => handleUpdate(i)}
                     handleChange={handleChange}
                     buttonValue={updateButtonValue}
-                    labelTitle='Update Title'
-                    labelDescription='Update Description'
+                    labelTitle='Update Title...'
+                    labelDescription='Update Description...'
                     isClicked={isClicked}
                     setIsClicked={setIsClicked}
                 />
@@ -138,14 +140,18 @@ const Main = () => {
 
     return (
         <main>
-            <Form 
+            <div className="form-header-container">
+                <h3 className="form-header">Let's add some tasks to the list below!</h3>
+            </div>
+
+            <FormComp 
                 title={input.title}
                 description={input.description}
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 buttonValue={buttonValue}
-                labelTitle='Title'
-                labelDescription='Description'
+                labelTitle='Title...'
+                labelDescription='Description...'
                
                 />
             {mapData}

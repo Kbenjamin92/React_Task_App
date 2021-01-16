@@ -1,18 +1,36 @@
 @media only screen and (max-width: 740px) {
     .parent-header-container {
-        /* display: flex; */
-        /* justify-content: center; */
-        padding: 10px 0px 0px 0px;
-        background-color:#d6dbdf;
-        
+        margin: 10px 0px 0px 0px;
+        background-color: white; 
+        box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.26);
+
     }
     .header-img {
         height: 220px;
         width: 100%;
     }
-    .header-txt {
-        font-size: 16px;
-        padding: 30px 25px 0px 0px;
+    .header-title-container {
+        margin: 32px 32px 24px 32px;
     }
+
+    .header-title {
+        color: #000000;
+        font-size: 22px;
+    }
+
+    .header-sub-container {
+        margin: 0px 42px 0px 42px;
+        padding-bottom: 7px;
+    }
+
+    .header-sub {
+        font-size: 16px;
+        color:  #a6acaf;
+    }
+    .task-app-txt {
+        text-decoration: underline;
+        text-decoration-color:#5dade2;
+    }
+    
     
 }

@@ -1,0 +1,12 @@
+@media only screen and (max-width: 740px) {
+    .container-form {
+        background-color: #f7f9f9;
+        margin-bottom: 500px;
+    }
+    .form {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+
+}
