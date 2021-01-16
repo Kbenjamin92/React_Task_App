@@ -10,6 +10,7 @@ const FormComp = (props) => {
     
     return (
         <Container fluid className="container-form">
+            
             <Form onSubmit={props.handleSubmit} className="form">
               <Form.Group>
               <Form.Control as="input" rows={3} 
@@ -19,6 +20,7 @@ const FormComp = (props) => {
                     value={props.title}
                     onChange={props.handleChange}
                     placeholder={props.labelTitle}
+                    required
                     />
                 </Form.Group>
 
@@ -30,13 +32,15 @@ const FormComp = (props) => {
                     value={props.description}
                     onChange={props.handleChange}
                     placeholder={props.labelDescription}
+                    required
                     />
                 </Form.Group>
-                 
-                <Button variant="success" type="submit">{props.buttonValue}</Button>
+
+
+                <Button className="submit-btn" variant="success" type="submit">{props.buttonValue}</Button>
                 {props.isClicked ? 
                 <>
-                <Button variant="danger" className="close-btn" onClick={() => props.setIsClicked(false)}>Close</Button> 
+                <Button variant="danger" className="close-btn" onClick={() => props.updateTargetItem(props.id)}>Close</Button> 
                 </>
                 : null}
                    

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import FormComp from './FormComp'
 import '../styles/Main.css'
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 
 const Main = () => {
@@ -105,20 +106,40 @@ const Main = () => {
                 obj.isActive = true
             }
         }
+        // changes isActive to false again
+        const updateTargetItem = (itemId) => {
+            setIsClicked(false)
+            if (obj.id === itemId) {
+                obj.isActive = false
+            }
+        }
 
         return (
+
             <div key={i} className="map-container">
                 {/* render the task data */}
-                <div className="content-container">
-                    <h3>{obj.title}</h3>
-                    <h3>{obj.description}</h3>
-                    <Button variant="danger" className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</Button>
-                    <Button variant="warning" className="updateBtn" onClick={() => targetItem(obj.id)}>Edit</Button>
-
-                </div>
-              
+               
+                <Card className="content-container" style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <Card.Title>
+                            {obj.title}
+                        </Card.Title>
+                        <hr/>
+                        <Card.Text>
+                            {obj.description}
+                        </Card.Text>
+                        <hr/>
+                        <Button variant="danger" className="delBtn" onClick={() => handleRemoveItem(obj)}>Remove</Button>
+                        <Button variant="warning" className="updateBtn" onClick={() => targetItem(obj.id)}>Edit</Button>
+                    </Card.Body>
+                </Card>
+               
+                
                 {isClicked === true && obj.isActive === true ?
                 <>
+                <div className="form-header-container">
+                    <h3 className="form-header">Update Task!</h3>
+                </div>
                 <FormComp 
                     title={updateInput.title}
                     description={updateInput.description}
@@ -128,7 +149,8 @@ const Main = () => {
                     labelTitle='Update Title...'
                     labelDescription='Update Description...'
                     isClicked={isClicked}
-                    setIsClicked={setIsClicked}
+                    updateTargetItem={updateTargetItem}
+                    id={obj.id}
                 />
                   
                 </>

@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/Header.css'
 import man from '../svg/manWithPhone.png'
-import Typical from 'react-typical';
 
 
 const Header = () => {
