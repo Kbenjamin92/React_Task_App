@@ -118,7 +118,6 @@ const Main = () => {
 
             <div key={i} className="map-container">
                 {/* render the task data */}
-               
                 <Card className="content-container" style={{ width: '18rem' }}>
                     <Card.Body>
                         <Card.Title>

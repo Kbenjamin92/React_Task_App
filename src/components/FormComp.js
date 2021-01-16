@@ -9,8 +9,10 @@ const FormComp = (props) => {
    
     
     return (
+        <div>
+
         <Container fluid className="container-form">
-            
+
             <Form onSubmit={props.handleSubmit} className="form">
               <Form.Group>
               <Form.Control as="input" rows={3} 
@@ -45,9 +47,11 @@ const FormComp = (props) => {
                 : null}
                    
             </Form>
-                    
 
         </Container>
+        
+        </div>
+       
     )
 }
 
