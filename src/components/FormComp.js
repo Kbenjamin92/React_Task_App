@@ -2,7 +2,6 @@ import React from 'react';
 import '../styles/Form.css'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
 
 
 const FormComp = (props) => {
@@ -11,7 +10,7 @@ const FormComp = (props) => {
     return (
         <div>
 
-        <Container fluid className="container-form">
+        <div className="container-form">
 
             <Form onSubmit={props.handleSubmit} className="form">
               <Form.Group>
@@ -48,7 +47,7 @@ const FormComp = (props) => {
                    
             </Form>
 
-        </Container>
+        </div>
         
         </div>
        

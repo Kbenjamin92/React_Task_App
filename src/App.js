@@ -13,8 +13,12 @@ const App = () => {
       <Header />
       <Main />
       <div className="app-msg">
-        <h3>"Do somthing great today, complete your goals and conquer your giants and STAY SAFE!"</h3>
-        <img src={hand} alt="hand" className="hand"/>
+        <div>
+          <h3 className="app-txt-msg">"Do somthing great today, complete your goals and conquer your giants and STAY SAFE!"</h3>
+        </div>
+        <div>
+          <img src={hand} alt="hand" className="hand"/>
+        </div>
       </div>
       <Footer />
     </div>

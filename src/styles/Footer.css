@@ -1,3 +1,16 @@
+.footer-container {
+    background-color: #f7f9f9;
+}
+.icon {
+    height: 30px;
+    width: 30px;
+    padding-bottom: 2px;
+}
+.footer-txt {
+    font-size: 18px;
+    padding-top: 20px;
+}
+
 @media only screen and (max-width: 740px) {
     .footer-container {
         background-color: #f7f9f9;

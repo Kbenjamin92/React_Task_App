@@ -8,12 +8,17 @@
   pointer-events: none;
 }
 .app-msg {
-  margin: 30px 35px 30px 35px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 20% 30px 15%;
   text-align: start;
 }
 .hand {
-  height: 200px;
-  width: 70%;
+  height: 350px;
+  width: 150%;
+}
+.app.txt-msg {
+  padding-right: 60%;
 }
 
 .App-header {
@@ -29,5 +34,19 @@
 
 .App-link {
   color: #61dafb;
+}
+
+@media only screen and (max-width: 740px) {
+
+  .app-msg {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 35px 30px 35px;
+    text-align: start;
+  }
+  .hand {
+    height: 200px;
+    width: 70%;
+  }
 }
 

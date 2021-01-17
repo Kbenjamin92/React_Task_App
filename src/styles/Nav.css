@@ -1,3 +1,19 @@
+.parent-nav-container {
+    color: black;
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.26);
+    
+}
+
+.app-title {
+    font-size: 30px;
+    padding: 8px 50% 10px 0px;
+}
+.nav-title-decoration {
+    text-decoration: underline;
+    text-decoration-color:#5dade2;
+}
+
+
 @media only screen and (max-width: 740px) {
     .parent-nav-container {
         color: black;

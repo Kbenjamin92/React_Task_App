@@ -10,14 +10,16 @@ const Header = () => {
             <div>
                 <img src={man} alt="man" className="header-img"/>
             </div>
-            
-            <div className="header-title-container">
-                <h3 className="header-title">Use Kipp's <span className="task-app-txt">Task App</span> to organize your productivity!</h3>
-            </div>
+            <div className="header-flex-container">
+                <div className="header-title-container">
+                    <h3 className="header-title">Use Kipp's <span className="task-app-txt">Task App</span> to organize your productivity!</h3>
+                </div>
            
-            <div className="header-sub-container">
-                <p className="header-sub">List daily tasks and agendas with Kipp's Task App!</p>
-            </div>  
+                <div className="header-sub-container">
+                    <p className="header-sub">List daily tasks and agendas with Kipp's Task App!</p>
+                </div> 
+            </div>
+            
         </header>
     );
 }
