@@ -154,7 +154,6 @@ const Main = () => {
                   
                 </>
                 : null}
-    
             </div>
             )
         })
@@ -176,7 +175,6 @@ const Main = () => {
                
                 />
             {mapData}
-            
         </main>
     );
 }

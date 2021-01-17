@@ -9,16 +9,17 @@
 }
 .app-msg {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 30px 20% 30px 15%;
   text-align: start;
 }
 .hand {
-  height: 350px;
-  width: 150%;
+  height: 80%;
+  width: 100%;
 }
-.app.txt-msg {
-  padding-right: 60%;
+.app-txt-msg {
+  /* padding-right: 10px; */
+  font-size: 35px;
 }
 
 .App-header {
@@ -45,8 +46,12 @@
     text-align: start;
   }
   .hand {
-    height: 200px;
+    height: 100%;
     width: 70%;
+  }
+
+  .app-txt-msg {
+    font-size: 25px;
   }
 }
 

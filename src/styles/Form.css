@@ -1,6 +1,7 @@
 .container-form {
     background-color: #f7f9f9;
     margin: 20px 15% 50px 15%;
+    border-radius: 5px;
 
 }
 .form {

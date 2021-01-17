@@ -14,7 +14,11 @@ const App = () => {
       <Main />
       <div className="app-msg">
         <div>
-          <h3 className="app-txt-msg">"Do somthing great today, complete your goals and conquer your giants and STAY SAFE!"</h3>
+          <h3 className="app-txt-msg">
+          "Do something great today, complete your goals, 
+          conquer your giants. Wear your masks, wash your hands,
+          social distance and STAY SAFE!"
+          </h3>
         </div>
         <div>
           <img src={hand} alt="hand" className="hand"/>
