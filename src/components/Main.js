@@ -115,10 +115,10 @@ const Main = () => {
         }
 
         return (
-
+            // style={{ width: '35rem' }}
             <div key={i} className="map-container">
                 {/* render the task data */}
-                <Card className="content-container" style={{ width: '35rem' }}>
+                <Card className="content-container" >
                     <Card.Body>
                         <Card.Title>
                             {obj.title}
