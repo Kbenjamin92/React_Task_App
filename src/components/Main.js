@@ -118,7 +118,7 @@ const Main = () => {
 
             <div key={i} className="map-container">
                 {/* render the task data */}
-                <Card className="content-container" style={{ width: '18rem' }}>
+                <Card className="content-container" style={{ width: '35rem' }}>
                     <Card.Body>
                         <Card.Title>
                             {obj.title}
@@ -132,6 +132,7 @@ const Main = () => {
                         <Button variant="warning" className="updateBtn" onClick={() => targetItem(obj.id)}>Edit</Button>
                     </Card.Body>
                 </Card>
+
                
                 
                 {isClicked === true && obj.isActive === true ?
